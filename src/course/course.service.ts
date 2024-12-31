@@ -3,17 +3,14 @@ import { InjectModel } from '@nestjs/mongoose';
 
 import { Model } from 'mongoose';
 import { Course } from './course-schema/course.schema';
+import { CreateCourseDto } from './dto/create-course.dto';
 
 @Injectable()
 export class CourseService {
   constructor(@InjectModel(Course.name) private courseModel: Model<Course>) {}
 
-  async create(courseDto: {
-    title: string;
-    description: string;
-    instructor: string;
-  }): Promise<Course> {
-    const course = new this.courseModel(courseDto);
+  async create(createCourseDto: CreateCourseDto): Promise<Course> {
+    const course = new this.courseModel(createCourseDto);
     return course.save();
   }
 
@@ -23,6 +20,10 @@ export class CourseService {
 
   async findById(courseId: string): Promise<Course | null> {
     return this.courseModel.findById(courseId).exec();
+  }
+
+  async findCourseWithStudents(courseId: string): Promise<Course | null> {
+    return this.courseModel.findById(courseId).populate('students').exec();
   }
 
   async update(

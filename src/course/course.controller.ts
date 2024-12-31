@@ -8,12 +8,15 @@ import {
   Post,
   Put,
   UseGuards,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Roles } from 'src/common/roles.decorator';
 import { RolesGuard } from 'src/common/roles/roles.guard';
 import { ROLES } from 'src/roles.constants';
 import { CourseService } from './course.service';
+import { CreateCourseDto } from './dto/create-course.dto';
 
 @Controller('courses')
 @UseGuards(AuthGuard('jwt'), RolesGuard)
@@ -22,10 +25,11 @@ export class CourseController {
 
   @Post()
   @Roles(ROLES.INSTRUCTOR)
+  @UsePipes(new ValidationPipe({transform: true}))
   async createCourse(
-    @Body() body: { title: string; description: string; instructor: string },
+    @Body() createCourseDto : CreateCourseDto
   ) {
-    return this.courseService.create(body);
+    return this.courseService.create(createCourseDto);
   }
 
   @Get()

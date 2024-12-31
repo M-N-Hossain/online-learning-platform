@@ -1,9 +1,19 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Roles } from 'src/common/roles.decorator';
 import { RolesGuard } from 'src/common/roles/roles.guard';
-import { EnrollmentService } from './enrollment.service';
 import { ROLES } from 'src/roles.constants';
+import { CreateEnrollmentDto } from './dto/create-enrollment.dto';
+import { EnrollmentService } from './enrollment.service';
 
 @Controller('enrollments')
 @UseGuards(AuthGuard('jwt'), RolesGuard)
@@ -12,14 +22,15 @@ export class EnrollmentController {
 
   @Post()
   @Roles(ROLES.STUDENT)
-  async enroll(@Body() body: { student: string; course: string }) {
-    return this.enrollmentService.enroll(body.student, body.course);
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async enroll(@Body() createEnrollmentDto: CreateEnrollmentDto) {
+    return this.enrollmentService.enroll(createEnrollmentDto);
   }
 
   @Get('student/:studentId')
   @Roles(ROLES.STUDENT)
   async getEnrollmentsByStudent(@Param('studentId') studentId: string) {
-    return this.enrollmentService.findEnrollmentsByStudent(studentId);
+    return this.enrollmentService.findEnrolledCoursesByStudent(studentId);
   }
 
   @Get('course/:courseId')
