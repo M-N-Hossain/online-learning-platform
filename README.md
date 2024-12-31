@@ -34,8 +34,26 @@ An API for managing an online learning platform, built with **NestJS** and **Mon
    cd online-learning-platform-api
    
 2. Install dependencies:
-  
-  ```bash
-  npm install
-  
-3. 
+   ```bash
+   npm install
+
+3. Configure environment variables: Create a .env file with:
+   ```bash
+   MONGO_URI=mongodb://localhost:27017/online-learning
+JWT_SECRET=your_jwt_secret
+
+4. Clone the repository:
+   ```bash
+   npm run start
+
+5. Access Swagger documentation:
+
+   -Visit: http://localhost:3000/api-docs
+
+## Future Enhancements
+
+- Add course progress tracking.
+- Integrate payment systems for course subscriptions.
+- Implement notifications for enrollment updates.
+
+# Thank you for reaching out to this point. Take Love
