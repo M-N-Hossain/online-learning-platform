@@ -30,8 +30,8 @@ An API for managing an online learning platform, built with **NestJS** and **Mon
 ## Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/online-learning-platform-api.git
-   cd online-learning-platform-api
+   git clone https://github.com/M-N-Hossain/online-learning-platform
+   cd online-learning-platform
    
 2. Install dependencies:
    ```bash
@@ -42,7 +42,7 @@ An API for managing an online learning platform, built with **NestJS** and **Mon
    MONGO_URI=mongodb://localhost:27017/online-learning
 JWT_SECRET=your_jwt_secret
 
-4. Clone the repository:
+4. Run the application:
    ```bash
    npm run start
 
