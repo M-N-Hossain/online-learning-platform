@@ -48,7 +48,7 @@ JWT_SECRET=your_jwt_secret
 
 5. Access Swagger documentation:
 
-   -Visit: http://localhost:3000/api-docs
+   - Visit: http://localhost:3000/api-docs
 
 ## Future Enhancements
 
