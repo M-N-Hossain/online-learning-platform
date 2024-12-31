@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Course, CourseSchema } from 'src/course/course-schema/course.schema';
-import { User, UserSchema } from 'src/user/user-schema/user.schema';
 import {
-  Enrollment,
-  EnrollmentSchema,
+    Course,
+    CourseSchema,
+} from 'src/modules/course/course-schema/course.schema';
+import { User, UserSchema } from 'src/modules/user/user-schema/user.schema';
+import {
+    Enrollment,
+    EnrollmentSchema,
 } from './enrollment-schema/enrollment.schema';
 import { EnrollmentController } from './enrollment.controller';
 import { EnrollmentService } from './enrollment.service';

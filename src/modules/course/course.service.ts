@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Course } from './course-schema/course.schema';
 import { CreateCourseDto } from './dto/create-course.dto';
+import { UpdateCourseDto } from './dto/update-course.dto';
 
 @Injectable()
 export class CourseService {
@@ -28,10 +29,10 @@ export class CourseService {
 
   async update(
     courseId: string,
-    updates: Partial<Course>,
+    updateCourseDto: UpdateCourseDto,
   ): Promise<Course | null> {
     return this.courseModel
-      .findByIdAndUpdate(courseId, updates, { new: true })
+      .findByIdAndUpdate(courseId, updateCourseDto, { new: true })
       .exec();
   }
 

@@ -2,19 +2,15 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module';
-import { CourseModule } from './course/course.module';
-import { EnrollmentModule } from './enrollment/enrollment.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { CourseModule } from './modules/course/course.module';
+import { EnrollmentModule } from './modules/enrollment/enrollment.module';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
     MongooseModule.forRoot(
       'mongodb://localhost:27017/online-learning-platform',
-      // {
-      //   useNewUrlParser: true,
-      //   useUnifiedTopology: true,
-      // },
     ),
     AuthModule,
     UserModule,

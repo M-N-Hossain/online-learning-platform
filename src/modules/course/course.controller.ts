@@ -17,6 +17,7 @@ import { RolesGuard } from 'src/common/roles/roles.guard';
 import { ROLES } from 'src/roles.constants';
 import { CourseService } from './course.service';
 import { CreateCourseDto } from './dto/create-course.dto';
+import { UpdateCourseDto } from './dto/update-course.dto';
 
 @Controller('courses')
 @UseGuards(AuthGuard('jwt'), RolesGuard)
@@ -48,9 +49,9 @@ export class CourseController {
   @Roles(ROLES.INSTRUCTOR)
   async updateCourse(
     @Param('id') id: string,
-    @Body() updates: Partial<{ title: string; description: string }>,
+    @Body() updateCourseDto: UpdateCourseDto,
   ) {
-    return this.courseService.update(id, updates);
+    return this.courseService.update(id, updateCourseDto);
   }
 
   @Delete(':id')

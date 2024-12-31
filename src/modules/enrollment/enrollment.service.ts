@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Course } from 'src/course/course-schema/course.schema';
-import { User } from 'src/user/user-schema/user.schema';
+import { Course } from 'src/modules/course/course-schema/course.schema';
+import { User } from 'src/modules/user/user-schema/user.schema';
 import { CreateEnrollmentDto } from './dto/create-enrollment.dto';
 import { Enrollment } from './enrollment-schema/enrollment.schema';
 
